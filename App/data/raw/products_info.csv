@@ -1,0 +1,81 @@
+product_id,product_name,category,price,stock_quantity,supplier
+1,Despite,Toys,1413.25,364,Gonzalez and Sons
+2,Moment,Sports,121.56,624,Cain-Carter
+3,Hair,Home,1915.02,147,Miller Ltd
+4,Wife,Home,1428.2,445,"Oliver, Middleton and Maddox"
+5,House,Toys,1445.93,226,"Gonzalez, Young and Wright"
+6,Serve,Clothing,549.26,689,Hernandez Ltd
+7,Charge,Toys,636.4,628,Thomas PLC
+8,Sometimes,Home,1422.3,605,Mckinney-Miller
+9,Drive,Home,269.05,993,"Mayer, Bryant and Anderson"
+10,Despite,Books,540.32,202,Hale-Bender
+11,Door,Electronics,1753.19,808,Ray Inc
+12,Institution,Clothing,617.11,351,Deleon PLC
+13,Interest,Electronics,216.13,492,Escobar-Vasquez
+14,Finally,Books,1504.88,536,Scott-Sanders
+15,Much,Toys,1784.28,556,Mann PLC
+16,Part,Home,271.0,649,Harris-Garcia
+17,Remember,Books,1732.89,176,Jackson LLC
+18,Cut,Toys,1581.39,702,"Ramirez, Miles and Murphy"
+19,Hair,Electronics,1400.2,173,Golden Group
+20,Follow,Sports,328.79,55,Davis-Holmes
+21,Parent,Toys,694.43,482,Rich-Mullen
+22,Old,Clothing,789.89,336,"Fisher, Hatfield and Bond"
+23,Sometimes,Sports,712.86,543,Bullock-Hughes
+24,Than,Books,1732.24,525,Mathis-Mendez
+25,President,Books,890.4,468,Smith PLC
+26,Recognize,Books,1947.81,788,Crawford LLC
+27,Parent,Toys,836.03,439,"Alvarez, Sims and Patterson"
+28,Pressure,Toys,527.5,699,Ellis Ltd
+29,Foot,Clothing,750.69,31,Hall-Ward
+30,All,Home,1837.23,356,"Cherry, Burke and Patterson"
+31,Same,Home,328.86,799,Yoder Inc
+32,Behind,Toys,1798.55,851,"Scott, Stark and Davidson"
+33,Staff,Clothing,1657.46,214,Lee Ltd
+34,Side,Electronics,138.68,358,Lewis-Ryan
+35,Skin,Sports,1679.45,530,Miller Inc
+36,Party,Books,551.62,818,Allen-Miranda
+37,Manager,Home,1169.7,79,"Malone, Mitchell and Davis"
+38,Become,Home,1013.17,609,Davenport-Williams
+39,Pattern,Sports,1338.65,2,Chung-Thompson
+40,Truth,Sports,135.97,51,Zuniga PLC
+41,Tv,Books,437.0,321,Hayden LLC
+42,Word,Toys,1859.84,73,Horton PLC
+43,Computer,Home,1367.86,602,Moreno Ltd
+44,Read,Electronics,1467.05,598,Roberts PLC
+45,Issue,Home,88.77,242,"Boyle, Garza and Klein"
+46,Share,Electronics,999.47,466,"Gonzalez, Morris and Owens"
+47,After,Home,488.99,529,Herrera Inc
+48,General,Books,1029.41,524,"Compton, Ruiz and Finley"
+49,Far,Home,291.12,895,"Black, Smith and Finley"
+50,Inside,Home,1155.01,468,Rogers-Watson
+51,Process,Home,664.05,58,Taylor-Bailey
+52,Artist,Home,913.04,665,Johnson-Jenkins
+53,Happen,Electronics,482.11,827,Green-Burns
+54,Food,Books,253.33,207,Wallace-Ward
+55,Lay,Home,1657.18,881,"Hall, Clayton and Potter"
+56,Itself,Books,1773.95,293,"Rodgers, Thompson and Richards"
+57,Amount,Toys,335.63,337,Benton and Sons
+58,Green,Toys,236.25,472,Williams-Martin
+59,Participant,Electronics,878.45,749,Gray-Farmer
+60,Rule,Home,1133.56,868,Norman LLC
+61,Police,Electronics,1244.95,763,Ramirez-Eaton
+62,Within,Clothing,1009.97,547,"Martinez, Webb and Blair"
+63,Front,Toys,76.61,582,Robbins and Sons
+64,Crime,Sports,1285.34,828,Garner-Williams
+65,Call,Clothing,319.04,957,"Perez, Crane and Herrera"
+66,Near,Toys,598.03,252,"Bonilla, Thompson and Hampton"
+67,Population,Books,1218.88,191,"Gregory, Salazar and Brown"
+68,Try,Clothing,270.71,889,"Williams, Martinez and Hardy"
+69,Meeting,Toys,690.07,343,Ryan-Saunders
+70,First,Toys,1679.31,118,Willis-Paul
+71,A,Home,962.52,652,"Brown, Gibbs and Martinez"
+72,Woman,Electronics,787.79,58,Brown Group
+73,Daughter,Toys,1143.73,210,Barber and Sons
+74,Task,Sports,635.55,886,"Lopez, Thomas and Odonnell"
+75,Season,Electronics,73.69,333,"Meyer, Ali and Martin"
+76,Purpose,Electronics,814.45,261,"Vincent, Lambert and Hubbard"
+77,Second,Clothing,86.6,312,"Flores, Smith and Powers"
+78,Near,Books,1971.52,692,Joseph-Bonilla
+79,Everything,Sports,540.95,22,"Lee, Schultz and Owens"
+80,Reflect,Electronics,1729.63,701,"Harper, Smith and Jackson"
