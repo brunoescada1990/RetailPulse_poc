@@ -1,0 +1,108 @@
+Guia Passo a Passo – Projeto RetailPulse (Nível 1)
+FASE 0 – Preparação
+
+Criar a estrutura de pastas do projeto (RetailPulse/).
+
+Colocar os ficheiros CSV em data/raw/ (sales_raw.csv, customers_info.csv, products_info.csv).
+
+Criar e ativar o ambiente virtual (venv).
+
+Instalar dependências via requirements.txt.
+
+FASE 1 – Extração (Extract)
+
+Criar etl/extract.py.
+
+Ler os CSVs com pandas.read_csv.
+
+Testar a leitura e imprimir as primeiras linhas (head()).
+
+Garantir que os tipos de dados estão corretos.
+
+FASE 2 – Transformação (Transform)
+
+Criar etl/transform.py.
+
+Limpar dados:
+
+Tratar valores nulos (substituir, remover ou preencher com média/mediana).
+
+Remover duplicados.
+
+Normalizar dados:
+
+Corrigir nomes e categorias.
+
+Garantir consistência em IDs e datas.
+
+Criar colunas derivadas:
+
+total = quantity * price
+
+profit = total - (quantity * cost_price) (após join com produtos)
+
+Extrair datas:
+
+Colunas de year, month, day para análises temporais.
+
+Fazer joins:
+
+sales × customers → região, idade, género, etc.
+
+sales × products → categoria, fornecedor, custo.
+
+FASE 3 – Carga (Load)
+
+Criar etl/load.py.
+
+Escolher base de dados local:
+
+SQLite (mais simples) ou PostgreSQL (mais próximo do real).
+
+Criar tabelas com SQLAlchemy ou SQL direto.
+
+Inserir os dados transformados nas tabelas.
+
+Testar consultas simples para garantir integridade.
+
+FASE 4 – Exploração e Análise
+
+Criar notebooks/exploration.ipynb.
+
+Explorar os dados com Pandas:
+
+Estatísticas básicas (describe, info).
+
+Agrupamentos (groupby) e pivôs (pivot_table).
+
+Executar queries SQL (usando DBeaver ou via Python):
+
+Total de vendas por cliente, produto, região, mês.
+
+Produtos mais lucrativos.
+
+Clientes VIP ou top 10% gasto.
+
+Identificar outliers e padrões.
+
+FASE 5 – Relatórios e Dashboard
+
+Guardar dados processados em data/processed/ e/ou .csv finais.
+
+Criar gráficos simples com:
+
+Matplotlib / Seaborn
+
+(Opcional) Streamlit para dashboard interativo.
+
+Incluir filtros por:
+
+Região, categoria, mês, produto.
+
+Mostrar KPIs principais:
+
+Vendas totais, lucro total, ticket médio, clientes ativos.
+
+FASE 6 – Automatização
+
+Criar main.py para rodar todo o pipeline:
