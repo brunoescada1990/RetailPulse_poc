@@ -19,6 +19,40 @@ Testar a leitura e imprimir as primeiras linhas (head()).
 
 Garantir que os tipos de dados estão corretos.
 
+    1. Identificar os tipos de cada coluna
+
+    Depois de ler os CSVs, verifica o tipo atual de cada coluna.
+
+    Pergunta-te: “Este tipo faz sentido para o que vou fazer depois?”
+
+    Exemplos típicos:
+
+    IDs (sale_id, customer_id, product_id) → geralmente int ou string (dependendo se tens zeros à esquerda).
+
+    Datas (sale_date) → datetime.
+
+    Quantidades e preços (quantity, price, cost_price) → int ou float.
+
+    Categorias ou nomes (customer_name, product_category) → string.
+
+    2. Corrigir tipos quando necessário
+
+    Colunas numéricas podem estar como object ou string → converte para int ou float.
+
+    Colunas de datas podem estar como string → converte para datetime.
+
+    Colunas categóricas → podes deixar como string ou converter para category (útil para memória e análises).
+
+    3. Verificar consistência
+
+    Após a conversão, faz checks rápidos:
+
+    Valores negativos em quantity ou price?
+
+    Datas dentro do período esperado?
+
+    IDs únicos onde devem ser únicos?
+
 FASE 2 – Transformação (Transform)
 
 Criar etl/transform.py.
