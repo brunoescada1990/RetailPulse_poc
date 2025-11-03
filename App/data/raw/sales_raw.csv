@@ -1,18 +1,18 @@
 sale_id,customer_id,product_id,quantity,sale_date,payment_method,store_location
-1,83,57,4,2024-01-01,PayPal,Eddieport
+1,83,57,4,2024-01-01,paypal,Eddieport
 2,273,53,4,2022-08-11,PayPal,Port Peter
-3,170,40,1,2023-07-27,Crypto,Banksstad
+3,170,40,1,2023-07-27,c,Banksstad
 4,17,7,4,2024-01-12,Debit Card,East Wendy
-5,18,36,3,2023-03-17,PayPal,Lake Stevenbury
-6,78,33,1,2022-09-01,PayPal,Brittanyberg
-7,254,15,1,2023-01-11,Debit Card,Staceyburgh
-8,234,55,1,2022-08-11,Credit Card,Lake Tiffany
+5,18,36,3,2023-03-17,pp,Lake Stevenbury
+6,78,33,0,2022-09-01,payPal,Brittanyberg
+7,254,15,tt,2023-01-11,Debit Card,Staceyburgh
+8,234,55,-1,gsdk,Credit Card,Lake Tiffany
 9,183,27,3,2022-06-09,Debit Card,Lewisborough
-10,249,80,4,2022-08-27,Debit Card,Garciaborough
+10,249,80,4,2022-08-27, Card,Garciaborough
 11,230,43,2,2024-07-21,Credit Card,Port Erikaport
-12,222,80,3,2023-12-08,Credit Card,Dillonberg
-13,277,16,2,2024-03-05,Debit Card,New Brian
-14,14,76,2,2022-02-26,PayPal,South Lucasfort
+12,222,80,3,oe,Credit Card,Dillonberg
+13,277,16,2,2024-05-08,Debit Card,New Brian
+14,14,76,2,2026-02-26,PayPal,South Lucasfort
 15,25,59,3,2024-09-24,Debit Card,Matthewmouth
 16,10,18,2,2023-01-10,Cash,Port Katie
 17,97,38,4,2022-03-16,Credit Card,Amytown

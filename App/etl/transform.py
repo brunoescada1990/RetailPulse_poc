@@ -109,20 +109,46 @@ def transform_and_normalize_sales(df: pd.DataFrame):
     df = df.drop_duplicates(subset=["customer_id", "product_id", "quantity", "sale_date", "payment_method", "store_location"]).dropna(subset=["sale_id"])
 
     df["sale_is_valid"] = True
+    df["sales_status_reason"] = ""
 
     min_date = datetime(1900, 1, 1)
     max_date = datetime.now()
     df["sale_date_clean"] = (df["sale_date"].astype(str).str.strip().str.replace(r"[./]", "-", regex=True))
     df["sale_date_clean"] = pd.to_datetime(df["sale_date_clean"], errors="coerce", format="mixed")
+    mask_invalid_date = df["sale_date_clean"].isna()
+    df.loc[mask_invalid_date, "sale_is_valid"] = False
+    df.loc[mask_invalid_date, "sales_status_reason"] += "Invalid sale_date; "
 
-
-    allowed_methods = ["PayPal", "Crypto", "Debit Card", "Credit Card", "Cash"]
+    mask_out_of_range = (df["sale_date_clean"] < min_date) | (df["sale_date_clean"] > max_date)
+    df.loc[mask_out_of_range, "sales_status_reason"] += "Invalid sale_date out of interval; "
+    df.loc[mask_out_of_range, "sale_is_valid"] = False
+    
+    allowed_methods = ["paypal", "crypto", "debit card", "credit card", "cash"]
+    df["payment_method"]=df["payment_method"].astype(str).str.strip().str.lower()
     mask_invalid_payment = ~df["payment_method"].isin(allowed_methods)
     df.loc[mask_invalid_payment, "sale_is_valid"] = False
-    #df.loc[mask_invalid_payment, "sales_status_reason"] += "Invalid payment method"
+    df.loc[mask_invalid_payment, "sales_status_reason"] += "Invalid payment method; "
+    df["payment_method"]= df["payment_method"].str.title()
 
+    mask_invalid_quantity = (df["quantity"].isna()) | (df["quantity"] <= 0)
+    df.loc[mask_invalid_quantity, "sale_is_valid"] = False
+    df.loc[mask_invalid_quantity, "sales_status_reason"] += "Quantity invalid; "
     
+    mask_invalid_customer_id = df["customer_id"].isna() | (df["customer_id"] == 0)
+    df.loc[mask_invalid_customer_id, "sale_is_valid"] = False
+    df.loc[mask_invalid_customer_id, "sales_status_reason"] += "Customer ID invalid; "
+
+    mask_invalid_product_id = df["product_id"].isna() | (df["product_id"] == 0)
+    df.loc[mask_invalid_product_id, "sale_is_valid"] = False
+    df.loc[mask_invalid_product_id, "sales_status_reason"] += "Product ID invalid; "
+
     log["final"] = len(df)
+
+    log["line_removed"] = log["init"] - log["final"]
+
+    log["valid"] = int(df["sale_is_valid"].sum())
+    log["invalid"] = int((~df["sale_is_valid"]).sum())
+
 
     with open(log_path_sales, "a") as f:
         json.dump(log, f, indent=4, default=str)
@@ -133,12 +159,12 @@ def transform_data():
 
     dataframes = extract_and_validate()
     customers = transform_and_normalize_customers(dataframes.get("customers_df"))
-    #products = transform_and_normalize_products(dataframes.get("products_df"))
+    products = transform_and_normalize_products(dataframes.get("products_df"))
     sales = transform_and_normalize_sales(dataframes.get("sales_df"))
 
     print(customers.head(20))
-    #print(products.head(20))
-    #print(sales.head(20))
+    print(products.head(20))
+    print(sales.head(20))
 
 if __name__ == "__main__":
    transform_data()
