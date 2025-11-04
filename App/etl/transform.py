@@ -19,7 +19,7 @@ log_path_products = "App/logs/transform_log_products.txt"
 log_path_sales = "App/logs/transform_log_sales.txt"
 
 
-def transform_and_normalize_customers(df: pd.DataFrame):
+def normalize_customers(df: pd.DataFrame):
 
     log = {}
     
@@ -71,7 +71,7 @@ def transform_and_normalize_customers(df: pd.DataFrame):
 
     return df
 
-def transform_and_normalize_products(df: pd.DataFrame):
+def normalize_products(df: pd.DataFrame):
     
     log = {}
     
@@ -98,7 +98,7 @@ def transform_and_normalize_products(df: pd.DataFrame):
 
     return df
 
-def transform_and_normalize_sales(df: pd.DataFrame):
+def normalize_sales(df: pd.DataFrame):
 
     log = {}
     
@@ -155,16 +155,38 @@ def transform_and_normalize_sales(df: pd.DataFrame):
 
     return df
 
+def transform_dates_sales(df: pd.DataFrame):
+
+    df["sale_date_clean"] = pd.to_datetime(df["sale_date_clean"], errors="coerce")
+    df["sale_year"] = df["sale_date_clean"].dt.year.astype("Int64")
+    df["sale_month"] = df["sale_date_clean"].dt.month.astype("Int64")
+    df["sale_day"] = df["sale_date_clean"].dt.day.astype("Int64")
+
+    return df
+
+
+def create_sales_full (df_sales: pd.DataFrame, df_products: pd.DataFrame, df_customers: pd.DataFrame):
+    
+    df_sales_full = pd.merge(df_sales, df_products, on="product_id", how="left")
+    df_sales_full = pd.merge(df_sales_full, df_customers, on="customer_id", how="left")
+
+    df_sales_full["total_value_sales"] = ((df_sales_full["quantity"].fillna(0) * df_sales_full["price"].fillna(0)) * df_sales_full["sale_is_valid"].astype(int)).abs()
+
+    return df_sales_full
+
+
 def transform_data():
 
     dataframes = extract_and_validate()
-    customers = transform_and_normalize_customers(dataframes.get("customers_df"))
-    products = transform_and_normalize_products(dataframes.get("products_df"))
-    sales = transform_and_normalize_sales(dataframes.get("sales_df"))
+    customers = normalize_customers(dataframes.get("customers_df"))
+    products = normalize_products(dataframes.get("products_df"))
+    sales = transform_dates_sales(normalize_sales(dataframes.get("sales_df")))
+    sales_full = create_sales_full(sales, products, customers)
 
-    print(customers.head(20))
-    print(products.head(20))
-    print(sales.head(20))
+    #print(customers.head(20))
+    #print(products.head(20))
+    #print(sales.head(20))
+    print(sales_full.head(20))
 
 if __name__ == "__main__":
    transform_data()
