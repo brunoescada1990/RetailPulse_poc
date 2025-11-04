@@ -73,8 +73,6 @@ Criar colunas derivadas:
 
 total = quantity * price
 
-profit = total - (quantity * cost_price) (após join com produtos)
-
 Extrair datas:
 
 Colunas de year, month, day para análises temporais.

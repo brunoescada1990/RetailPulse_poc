@@ -3,7 +3,7 @@ from pathlib import Path
 import logging
 
 logging.basicConfig(
-    filename="etl_extract.log",
+    filename="App/logs/etl_extract.log",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
@@ -23,7 +23,6 @@ def read_csv_safe(file_path: Path, name: str) -> pd.DataFrame | None:
              log.warning(f"✅ {name} Read with success but is Empty.")
         
         return df
-
     except FileNotFoundError:
         log.error(f"❌ File Not Found: {file_path}")
     except pd.errors.EmptyDataError:
@@ -32,19 +31,8 @@ def read_csv_safe(file_path: Path, name: str) -> pd.DataFrame | None:
         log.error(f"⚠️ Error in Parser {file_path}")
     except Exception as e:
         log.exception(f"⚠️ Error in {file_path}: {e}")
-
     return None
 
-
-def extract_data():
-
-    base_path = Path(__file__).parent.parent / "data" / "raw"
-
-    customers_df = read_csv_safe(base_path / "customers_info.csv", "customers_info.csv")
-    products_df = read_csv_safe(base_path / "products_info.csv", "products_info.csv")
-    sales_df = read_csv_safe(base_path / "sales_raw.csv", "sales_raw.csv")
-
-    return customers_df, products_df, sales_df
 
 def check_dtypes(df: pd.DataFrame, expected_types: dict, name: str):
     """Check and fix data types"""
@@ -58,23 +46,18 @@ def check_dtypes(df: pd.DataFrame, expected_types: dict, name: str):
         
         if actual_type != expected_type:
             log.warning(f"Column '{col}' IN {name} have type {actual_type}, but was expected {expected_type}. trying convert...")
-            
             try:
                 if expected_type == "datetime64[ns]":
-                    df[col] = pd.to_datetime(df[col], format="%Y-%m-%d", errors="coerce")
-                
+                    df[col] = pd.to_datetime(df[col], errors="coerce", dayfirst=True, format="mixed")
                 elif expected_type in ["int64", "float64"]:
                     df[col] = pd.to_numeric(df[col], errors="coerce")
-                
                 else:
                     df[col] = df[col].astype(str)
-                
                 log.info(f"'{col}' successfully converted to {expected_type}.")
-
             except Exception as e:
                 log.error(f"Error converting '{col}' in {name}: {e}")
-  
     return df
+
 
 def validate_dataframes(customers, products, sales):
    
@@ -121,7 +104,19 @@ def validate_dataframes(customers, products, sales):
     
     return validated_data
 
-            
+
+def extract_and_validate():
+
+    base_path = Path(__file__).parent.parent / "data" / "raw"
+
+    customers_df = read_csv_safe(base_path / "customers_info.csv", "customers_info.csv")
+    products_df = read_csv_safe(base_path / "products_info.csv", "products_info.csv")
+    sales_df = read_csv_safe(base_path / "sales_raw.csv", "sales_raw.csv")
+
+    validated_data = validate_dataframes(customers_df, products_df, sales_df)
+    return validated_data
+
+
 if __name__ == "__main__":
-    customers, products, sales = extract_data()
-    validated = validate_dataframes(customers, products, sales)
+    
+   validated = extract_and_validate()

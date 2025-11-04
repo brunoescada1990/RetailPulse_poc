@@ -1,2 +1,3 @@
 .vscode/
-etl_extract.log
+App/etl/__pycache__/*
+App/logs/*
