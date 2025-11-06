@@ -186,6 +186,8 @@ def transformed_data():
 
     dataframe_trasformated["sales_full_df"] = create_sales_full(dataframe_trasformated.get("sales_df"), dataframe_trasformated.get("products_df"), dataframe_trasformated.get("customers_df"))
 
+    print(dataframe_trasformated.get("products_df").head())
+
     return dataframe_trasformated
 
 if __name__ == "__main__":
