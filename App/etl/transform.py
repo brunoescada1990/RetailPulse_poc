@@ -175,18 +175,18 @@ def create_sales_full (df_sales: pd.DataFrame, df_products: pd.DataFrame, df_cus
     return df_sales_full
 
 
-def transform_data():
+def transformed_data():
 
     dataframes = extract_and_validate()
-    customers = normalize_customers(dataframes.get("customers_df"))
-    products = normalize_products(dataframes.get("products_df"))
-    sales = transform_dates_sales(normalize_sales(dataframes.get("sales_df")))
-    sales_full = create_sales_full(sales, products, customers)
+    dataframe_trasformated = {}
 
-    #print(customers.head(20))
-    #print(products.head(20))
-    #print(sales.head(20))
-    print(sales_full.head(20))
+    dataframe_trasformated["customers_df"] = normalize_customers(dataframes.get("customers_df"))
+    dataframe_trasformated["products_df"] = normalize_products(dataframes.get("products_df"))
+    dataframe_trasformated["sales_df"] = transform_dates_sales(normalize_sales(dataframes.get("sales_df")))
+
+    dataframe_trasformated["sales_full_df"] = create_sales_full(dataframe_trasformated.get("sales_df"), dataframe_trasformated.get("products_df"), dataframe_trasformated.get("customers_df"))
+
+    return dataframe_trasformated
 
 if __name__ == "__main__":
-   transform_data()
+   transform = transformed_data()
