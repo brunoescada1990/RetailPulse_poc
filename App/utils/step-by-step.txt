@@ -97,7 +97,47 @@ Inserir os dados transformados nas tabelas.
 
 Testar consultas simples para garantir integridade.
 
-FASE 4 – Exploração e Análise
+FASE 4 - TESTES:
+
+🔹 A. Testes de Extract
+
+Validam a leitura e integridade dos ficheiros de origem:
+
+Verificar se cada CSV foi lido com sucesso (não None).
+
+Confirmar que o número de colunas e o nome delas é o esperado.
+
+Testar se o schema (tipos de dados) é coerente.
+
+Garantir que ficheiros vazios ou corrompidos geram logs de erro.
+
+🔹 B. Testes de Transform
+
+Validam as transformações e normalizações:
+
+Nenhum customer_id, product_id ou sale_id nulo após limpeza.
+
+Emails inválidos estão marcados como False.
+
+Datas inválidas ou fora de intervalo são marcadas corretamente.
+
+total_value_sales é calculado corretamente.
+
+Nenhum valor negativo em loyalty_points, quantity ou price.
+
+🔹 C. Testes de Load
+
+Validam a integração com o banco:
+
+Tabelas são criadas corretamente.
+
+Quantidade de registos inseridos é igual à do DataFrame.
+
+Tipos de dados no PostgreSQL correspondem aos esperados.
+
+Constraints básicas (PK, FK, not null) são respeitadas.
+
+FASE 5 – Exploração e Análise
 
 Criar notebooks/exploration.ipynb.
 
@@ -117,7 +157,7 @@ Clientes VIP ou top 10% gasto.
 
 Identificar outliers e padrões.
 
-FASE 5 – Relatórios e Dashboard
+FASE 6 – Relatórios e Dashboard
 
 Guardar dados processados em data/processed/ e/ou .csv finais.
 
@@ -135,6 +175,12 @@ Mostrar KPIs principais:
 
 Vendas totais, lucro total, ticket médio, clientes ativos.
 
-FASE 6 – Automatização
+FASE 7 – Automatização
 
 Criar main.py para rodar todo o pipeline:
+
+FASE 8 - Documentação
+
+Criar documentação de codigo
+
+Criar documentação arquitectura.
