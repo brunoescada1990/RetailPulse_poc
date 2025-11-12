@@ -10,29 +10,6 @@ logging.basicConfig(
 
 log = logging.getLogger(__name__)
 
-def read_csv_safe(file_path: Path, name: str) -> pd.DataFrame | None:
-    """
-    Read a CSV file in a safe format, with error handling and logging.
-    Returns a DataFrame or None if the read fails.
-    """
-    try:
-        df = pd.read_csv(file_path)
-        if not df.empty:
-            log.info(f"✅ {name} Read with success ({len(df)} lines).")
-        else:
-             log.warning(f"✅ {name} Read with success but is Empty.")
-        
-        return df
-    except FileNotFoundError:
-        log.error(f"❌ File Not Found: {file_path}")
-    except pd.errors.EmptyDataError:
-        log.error(f"⚠️ File Empty: {file_path}")
-    except pd.errors.ParserError:
-        log.error(f"⚠️ Error in Parser {file_path}")
-    except Exception as e:
-        log.exception(f"⚠️ Error in {file_path}: {e}")
-    return None
-
 
 def check_dtypes(df: pd.DataFrame, expected_types: dict, name: str):
     """Check and fix data types"""
@@ -103,6 +80,30 @@ def validate_dataframes(customers, products, sales):
         validated_data["sales_df"] = check_dtypes(sales, expected_sales, "sales_raw")
     
     return validated_data
+
+
+def read_csv_safe(file_path: Path, name: str) -> pd.DataFrame | None:
+    """
+    Read a CSV file in a safe format, with error handling and logging.
+    Returns a DataFrame or None if the read fails.
+    """
+    try:
+        df = pd.read_csv(file_path)
+        if not df.empty:
+            log.info(f"✅ {name} Read with success ({len(df)} lines).")
+        else:
+             log.warning(f"✅ {name} Read with success but is Empty.")
+        
+        return df
+    except FileNotFoundError:
+        log.error(f"❌ File Not Found: {file_path}")
+    except pd.errors.EmptyDataError:
+        log.error(f"⚠️ File Empty: {file_path}")
+    except pd.errors.ParserError:
+        log.error(f"⚠️ Error in Parser {file_path}")
+    except Exception as e:
+        log.exception(f"⚠️ Error in {file_path}: {e}")
+    return None
 
 
 def extract_and_validate():

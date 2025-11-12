@@ -4,3 +4,6 @@ psycopg2-binary
 sqlalchemy
 python-dotenv
 jupyter
+pytest 
+pytest-cov
+sqlalchemy-utils

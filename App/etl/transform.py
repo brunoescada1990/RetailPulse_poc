@@ -4,7 +4,7 @@ import re
 import json
 
 from datetime import datetime
-from extract import extract_and_validate
+from App.etl.extract import extract_and_validate
 
 logging.basicConfig(
     filename="etl_extract.log",
