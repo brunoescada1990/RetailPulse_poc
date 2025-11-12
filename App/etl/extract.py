@@ -1,6 +1,7 @@
 import pandas as pd
 from pathlib import Path
 import logging
+from typing import Optional
 
 logging.basicConfig(
     filename="App/logs/etl_extract.log",
@@ -12,7 +13,10 @@ log = logging.getLogger(__name__)
 
 
 def check_dtypes(df: pd.DataFrame, expected_types: dict, name: str):
-    """Check and fix data types"""
+    """
+    Check and fix the data types of a DataFrame.
+    Supports int (Int64), float, datetime, and object (str).
+    """
 
     for col, expected_type in expected_types.items():
         if col not in df.columns:
@@ -25,8 +29,10 @@ def check_dtypes(df: pd.DataFrame, expected_types: dict, name: str):
             log.warning(f"Column '{col}' IN {name} have type {actual_type}, but was expected {expected_type}. trying convert...")
             try:
                 if expected_type == "datetime64[ns]":
-                    df[col] = pd.to_datetime(df[col], errors="coerce", dayfirst=True, format="mixed")
-                elif expected_type in ["int64", "float64"]:
+                    df[col] = pd.to_datetime(df[col], errors="coerce", dayfirst=True)
+                elif expected_type == "int64":
+                    df[col] = pd.to_numeric(df[col], errors="coerce").astype("Int64")
+                elif expected_type == "float64":
                     df[col] = pd.to_numeric(df[col], errors="coerce")
                 else:
                     df[col] = df[col].astype(str)
@@ -37,8 +43,10 @@ def check_dtypes(df: pd.DataFrame, expected_types: dict, name: str):
 
 
 def validate_dataframes(customers, products, sales):
-   
-    """Valida e corrige os tipos de dados de todos os DataFrames extraídos."""
+    """
+    Validate and correct the data types of all extracted DataFrames.
+    Returns a dictionary with the validated DataFrames.
+    """
     
     expected_customers = {
         "customer_id": "int64",
@@ -82,11 +90,12 @@ def validate_dataframes(customers, products, sales):
     return validated_data
 
 
-def read_csv_safe(file_path: Path, name: str) -> pd.DataFrame | None:
+def read_csv_safe(file_path: Path, name: str) -> Optional[pd.DataFrame]:
     """
-    Read a CSV file in a safe format, with error handling and logging.
-    Returns a DataFrame or None if the read fails.
+    Read a CSV safely with error handling and logging.
+    Returns a DataFrame or None if reading fails.
     """
+
     try:
         df = pd.read_csv(file_path)
         if not df.empty:
@@ -107,6 +116,9 @@ def read_csv_safe(file_path: Path, name: str) -> pd.DataFrame | None:
 
 
 def extract_and_validate():
+    """
+    Orchestrate the extraction of CSV files and validate the DataFrames.
+    """
 
     base_path = Path(__file__).parent.parent / "data" / "raw"
 
@@ -116,7 +128,7 @@ def extract_and_validate():
 
     validated_data = validate_dataframes(customers_df, products_df, sales_df)
     return validated_data
-
+    
 
 if __name__ == "__main__":
     
