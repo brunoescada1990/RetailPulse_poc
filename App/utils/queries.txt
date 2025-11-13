@@ -1,0 +1,70 @@
+Nível 1 – Básico (SELECT simples, filtros, ordenação)
+
+1. Mostra todos os clientes da tabela `customers`.
+2. Mostra todos os produtos com preço acima de 500.
+3. Lista os 10 clientes com mais pontos de fidelidade (`loyalty_points`).
+4. Mostra todos os produtos da categoria “Eletrónicos”.
+5. Lista todas as vendas feitas em Lisboa (`store_location`).
+6. Mostra clientes do país “Portugal” ordenados por `last_name`.
+7. Lista produtos com stock menor que 100, ordenados por `stock_quantity`.
+8. Mostra vendas com `sale_is_valid = FALSE`.
+9. Lista todos os clientes cujo `email` é válido (`is_email_valid = TRUE`).
+10. Mostra as 5 vendas mais recentes (`sale_date`) da tabela `sales`.
+
+Nível 2 – Intermediário (Agregações, GROUP BY, HAVING)
+11. Conta o número total de clientes por país.
+12. Calcula a média de pontos de fidelidade por país.
+13. Conta o número de produtos por categoria.
+14. Calcula o preço médio dos produtos por categoria.
+15. Soma a quantidade de produtos vendidos por `product_id`.
+16. Calcula o total de vendas (`quantity * price`) por `customer_id`.
+17. Mostra o número de vendas válidas e inválidas por loja (`store_location`).
+18. Lista os clientes que têm mais de 200 pontos de fidelidade.
+19. Calcula o total de vendas por mês (`sale_month`).
+20. Lista produtos com stock total menor que 50.
+
+Nível 3 – Avançado (JOINs e subqueries)
+21. Mostra o nome do cliente e o nome do produto de todas as vendas (JOIN `sales` + `customers` + `products`).
+22. Lista todas as vendas com `quantity > 1` mostrando o nome do cliente e do produto.
+23. Mostra os clientes que compraram produtos da categoria “Eletrónicos”.
+24. Lista produtos que nunca foram vendidos.
+25. Mostra o total gasto por cada cliente (soma de `quantity * price`).
+26. Lista vendas em que o cliente tem menos de 100 pontos de fidelidade.
+27. Mostra o nome do produto mais vendido (quantidade total).
+28. Lista clientes que compraram mais de 2 produtos diferentes.
+29. Mostra todas as vendas feitas no último mês com o nome do cliente.
+30. Lista produtos vendidos junto com a quantidade total vendida, ordenados do maior para o menor.
+
+Nível 4 – Expert/Desafio (CTEs, funções de janela, ranking, KPIs)
+31. Cria um ranking dos clientes por total de vendas (`ROW_NUMBER()`).
+32. Mostra os 3 produtos mais vendidos.
+33. Calcula a média de vendas por cliente e lista clientes acima da média.
+34. Lista clientes que não fizeram nenhuma venda.
+35. Mostra o total de vendas por categoria usando CTEs.
+36. Lista os produtos com menor e maior preço de cada categoria.
+37. Calcula o total de vendas por país.
+38. Lista as vendas com maior valor por loja (`sale_quantity * price`).
+39. Ranking dos clientes por quantidade de produtos comprados (`RANK()` ou `DENSE_RANK()`).
+40. Mostra os meses com maior e menor total de vendas.
+
+Nível 5 – Extra/Exploratório (Datas, strings, análises combinadas)
+41. Lista todos os clientes que nasceram antes de 1990.
+42. Conta o número de vendas por ano (`sale_year`).
+43. Mostra o total de vendas feitas por dia da semana (`EXTRACT(DOW FROM sale_date)`).
+44. Lista clientes cujo nome começa com “M”.
+45. Lista produtos cujo nome contém a palavra “Notebook”.
+46. Mostra a soma de pontos de fidelidade por gênero (`gender`).
+47. Calcula a média de vendas por cliente no último mês.
+48. Lista os produtos com estoque abaixo da média da categoria.
+49. Lista clientes que compraram produtos de mais de uma categoria.
+50. Mostra a média de vendas por loja, apenas considerando vendas válidas.
+51. Lista os 5 clientes que mais compraram no último trimestre.
+52. Mostra produtos que tiveram vendas acima de 100 unidades em qualquer mês.
+53. Lista clientes que nunca compraram produtos da categoria “Mobiliário”.
+54. Calcula o valor médio das vendas por método de pagamento (`payment_method`).
+55. Lista clientes que fizeram compras em mais de uma loja.
+56. Mostra vendas em que o total (`quantity * price`) é maior que 1000.
+57. Calcula a diferença entre o preço do produto e a média da categoria para cada venda.
+58. Mostra os clientes com maior gasto total em cada país.
+59. Lista os produtos com preço acima da média da categoria e vendas abaixo da média.
+60. Lista o mês com maior quantidade de vendas para cada produto.
